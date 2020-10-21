@@ -1,6 +1,7 @@
 package tests.steps;
 
 import cucumber.api.java.en.When;
+import helpers.EyesTool;
 import helpers.PercyTool;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -14,6 +15,12 @@ public class CommonSteps {
     @When("^I take screenshot via Percy tool$")
     public void iTakeScreenshotViaPercyTool() {
         PercyTool percyTool = new PercyTool();
-        percyTool.snapshot("name");
+//        percyTool.percy.snapshot("name");
     }
+//
+//    @When("^I take screenshot via Eyes tool$")
+//    public void iTakeScreenshotViaEyesTool() {
+//        EyesTool eyesTool = new EyesTool("batchName", "khaiSite", "test", 1366, 768);
+//        eyesTool.eyes.checkWindow("Khai site");
+//    }
 }

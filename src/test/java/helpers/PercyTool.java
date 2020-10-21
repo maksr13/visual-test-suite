@@ -13,20 +13,4 @@ public class PercyTool {
     public PercyTool() {
         percy = new Percy(getWebDriver());
     }
-
-    public void snapshot(String name) {
-        percy.snapshot(name);
-    }
-
-    public void snapshot(String name, List<Integer> widths) {
-        percy.snapshot(name, widths);
-    }
-
-    public void snapshot(String name, List<Integer> widths, Integer minHeight) {
-        percy.snapshot(name, widths, minHeight);
-    }
-
-    public void snapshot(String name, List<Integer> widths, Integer minHeight, boolean enableJavaScript) {
-        percy.snapshot(name, widths, minHeight, enableJavaScript);
-    }
 }
