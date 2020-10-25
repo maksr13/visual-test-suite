@@ -39,6 +39,11 @@
             <artifactId>percy-java-selenium</artifactId>
             <version>0.1.4</version>
         </dependency>
+        <dependency>
+            <groupId>com.applitools</groupId>
+            <artifactId>eyes-selenium-java3</artifactId>
+            <version>3.178.0</version>
+        </dependency>
     </dependencies>
     <build>
         <defaultGoal>dependency:copy-dependencies</defaultGoal>
