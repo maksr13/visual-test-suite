@@ -10,8 +10,8 @@
 
     <properties>
         <version.selenide>5.5.0</version.selenide>
-        <version.junit.cucumber>1.2.6</version.junit.cucumber>
-        <version.java.cucumber>1.2.6</version.java.cucumber>
+        <version.junit.cucumber>6.8.1</version.junit.cucumber>
+        <version.java.cucumber>6.8.1</version.java.cucumber>
         <version.maven.exec>1.6.0</version.maven.exec>
         <version.rest.assured>4.1.2</version.rest.assured>
     </properties>
@@ -24,25 +24,15 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
             <version>${version.junit.cucumber}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${version.java.cucumber}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>${version.rest.assured}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.ant</groupId>
-            <artifactId>ant</artifactId>
-            <version>1.8.2</version>
         </dependency>
         <dependency>
             <groupId>io.percy</groupId>

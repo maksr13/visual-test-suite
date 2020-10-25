@@ -1,6 +1,6 @@
 package tests.steps;
 
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.When;
 import helpers.PercyTool;
 
 import static com.codeborne.selenide.Selenide.open;
