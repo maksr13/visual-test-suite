@@ -13,16 +13,19 @@ public class CommonSteps {
         open("https://khai.edu/ua/");
     }
 
+    @When("^I launch Percy tool$")
+    public void iLaunchPercyTool() {
+        new PercyTool();
+    }
+
     @When("^I take screenshot via Percy tool$")
     public void iTakeScreenshotViaPercyTool() {
-        PercyTool percyTool = new PercyTool();
-
-        percyTool.percy.snapshot("name");
+        PercyTool.percy.snapshot("name");
     }
 
     @When("^I open Eyes$")
     public void iOpenEyes() {
-        EyesTool eyesTool = new EyesTool("batchName", "khaiSite", "test", 800, 600);
+        new EyesTool("batchName", "khaiSite", "test", 800, 600);
     }
 
     @When("^I take screenshot via Eyes tool$")
