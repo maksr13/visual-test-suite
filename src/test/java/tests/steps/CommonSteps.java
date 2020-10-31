@@ -50,13 +50,8 @@ public class CommonSteps {
         String scenario = data.get(1).get(1);
         String screenshotNumber = data.get(1).get(2);
 
-        CustomVisualTestingTool customVisualTestingTool = new CustomVisualTestingTool();
+        CustomVisualTestingTool customVisualTestingTool = new CustomVisualTestingTool(feature, scenario, screenshotNumber);
 
-        String expectedImagePath = customVisualTestingTool.buildExpectedImagePath(feature, scenario, screenshotNumber);
-        String actualImagePath = customVisualTestingTool.buildActualImagePath(feature, scenario, screenshotNumber);
-        String comparedImagePath = customVisualTestingTool.buildComparedImagePath(feature, scenario, screenshotNumber);
-        String comparedGiffsPath = customVisualTestingTool.buildComparedGiffsPath(feature, scenario, screenshotNumber);
-
-        customVisualTestingTool.takeScreenshotAndCompareImages(actualImagePath, expectedImagePath, comparedImagePath, comparedGiffsPath);
+        customVisualTestingTool.takeScreenshotAndCompareImages();
     }
 }

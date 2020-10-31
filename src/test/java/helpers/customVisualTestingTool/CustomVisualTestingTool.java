@@ -22,7 +22,12 @@ public class CustomVisualTestingTool {
     private String comparedImagesFolderPath = System.getProperty("user.dir") + "/src/test/java/helpers/customVisualTestingTool/comparedImages/";
     private String comparedGiffsFolderPath = System.getProperty("user.dir") + "/src/test/java/helpers/customVisualTestingTool/comparedGiffs/";
 
-    public CustomVisualTestingTool() throws IOException {
+    private String actualImagePath;
+    private String expectedImagePath;
+    private String comparedImagePath;
+    private String comparedGiffPath;
+
+    public CustomVisualTestingTool(String featureName, String scenarioNumber, String screenshotNumber) throws IOException {
         if (Files.notExists(Paths.get(actualImagesFolderPath))) {
             Files.createDirectory(Paths.get(actualImagesFolderPath));
         }
@@ -35,42 +40,46 @@ public class CustomVisualTestingTool {
         if (Files.notExists(Paths.get(comparedGiffsFolderPath))) {
             Files.createDirectory(Paths.get(comparedGiffsFolderPath));
         }
+        actualImagePath = buildActualImagePath(featureName, scenarioNumber, screenshotNumber);
+        expectedImagePath = buildExpectedImagePath(featureName, scenarioNumber, screenshotNumber);
+        comparedImagePath = buildComparedImagePath(featureName, scenarioNumber, screenshotNumber);
+        comparedGiffPath = buildComparedGiffPath(featureName, scenarioNumber, screenshotNumber);
+    }
+
+    private String buildActualImagePath(String featureName, String scenarioNumber, String screenshotNumber) throws IOException {
+        String directoryForScenarioPath = createDirectoryForScenarioIfDoesntExist(featureName, scenarioNumber, actualImagesFolderPath);
+
+        return directoryForScenarioPath + "/" + screenshotNumber + ".png";
+    }
+
+    private String buildExpectedImagePath(String featureName, String scenarioNumber, String screenshotNumber) throws IOException {
+        String directoryForScenarioPath = createDirectoryForScenarioIfDoesntExist(featureName, scenarioNumber, expectedImagesFolderPath);
+
+        return directoryForScenarioPath + "/" + screenshotNumber + ".png";
+    }
+
+    private String buildComparedImagePath(String featureName, String scenarioNumber, String screenshotNumber) throws IOException {
+        String directoryForScenarioPath = createDirectoryForScenarioIfDoesntExist(featureName, scenarioNumber, comparedImagesFolderPath);
+
+        return directoryForScenarioPath + "/" + screenshotNumber + ".png";
+    }
+
+    private String buildComparedGiffPath(String featureName, String scenarioNumber, String screenshotNumber) throws IOException {
+        String directoryForScenarioPath = createDirectoryForScenarioIfDoesntExist(featureName, scenarioNumber, comparedGiffsFolderPath);
+
+        return directoryForScenarioPath + "/" + screenshotNumber + ".gif";
     }
 
     private String createDirectoryForScenarioIfDoesntExist(String featureName, String scenarioNumber, String baseFolder) throws IOException {
-        String featureFolderPath = baseFolder + "/" + featureName;
-        if (Files.notExists(Paths.get(featureFolderPath))) {
-            Files.createDirectory(Paths.get(featureFolderPath));
+        String directoryForFeaturePath = baseFolder + "/" + featureName;
+        if (Files.notExists(Paths.get(directoryForFeaturePath))) {
+            Files.createDirectory(Paths.get(directoryForFeaturePath));
         }
-        String scenarioFolderPath = featureFolderPath + "/" + scenarioNumber;
-        if (Files.notExists(Paths.get(scenarioFolderPath))) {
-            Files.createDirectory(Paths.get(scenarioFolderPath));
+        String directoryForScenarioPath = directoryForFeaturePath + "/" + scenarioNumber;
+        if (Files.notExists(Paths.get(directoryForScenarioPath))) {
+            Files.createDirectory(Paths.get(directoryForScenarioPath));
         }
-        return scenarioFolderPath;
-    }
-
-    public String buildActualImagePath(String featureName, String scenarioNumber, String screenshotNumber) throws IOException {
-        String directoryForScenario = createDirectoryForScenarioIfDoesntExist(featureName, scenarioNumber, actualImagesFolderPath);
-
-        return directoryForScenario + "/" + screenshotNumber + ".png";
-    }
-
-    public String buildExpectedImagePath(String featureName, String scenarioNumber, String screenshotNumber) throws IOException {
-        String directoryForScenario = createDirectoryForScenarioIfDoesntExist(featureName, scenarioNumber, expectedImagesFolderPath);
-
-        return directoryForScenario + "/" + screenshotNumber + ".png";
-    }
-
-    public String buildComparedImagePath(String featureName, String scenarioNumber, String screenshotNumber) throws IOException {
-        String directoryForScenario = createDirectoryForScenarioIfDoesntExist(featureName, scenarioNumber, comparedImagesFolderPath);
-
-        return directoryForScenario + "/" + screenshotNumber + ".png";
-    }
-
-    public String buildComparedGiffsPath(String featureName, String scenarioNumber, String screenshotNumber) throws IOException {
-        String directoryForScenario = createDirectoryForScenarioIfDoesntExist(featureName, scenarioNumber, comparedGiffsFolderPath);
-
-        return directoryForScenario + "/" + screenshotNumber + ".png";
+        return directoryForScenarioPath;
     }
 
     private boolean takeScreenshot(String imagePath) {
@@ -107,7 +116,7 @@ public class CustomVisualTestingTool {
         }
     }
 
-    public Boolean takeScreenshotAndCompareImages(String actualImagePath, String expectedImagePath, String comparedImagePath, String comparedGiffPath) throws IOException {
+    public Boolean takeScreenshotAndCompareImages() throws IOException {
         if (!Files.isRegularFile(Paths.get(expectedImagePath))) {
             takeScreenshot(expectedImagePath);
 
