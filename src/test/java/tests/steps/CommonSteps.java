@@ -1,10 +1,15 @@
 package tests.steps;
 
 import helpers.EyesTool;
+import helpers.customVisualTestingTool.CustomVisualTestingTool;
 import io.cucumber.java.en.When;
 import helpers.PercyTool;
 
+import java.io.IOException;
+import java.util.List;
+
 import static com.codeborne.selenide.Selenide.open;
+import io.cucumber.datatable.DataTable;
 
 public class CommonSteps {
 
@@ -34,7 +39,22 @@ public class CommonSteps {
     }
 
     @When("^I close Eyes$")
-    public void icloseEyes() {
+    public void iCloseEyes() {
         EyesTool.eyes.closeAsync();
+    }
+
+    @When("^I take screenshot via Custom Visual Testing tool$")
+    public void iTakeScreenshotViaCustomVisualTestingTool(DataTable table) throws IOException {
+        List<List<String>> data = table.asLists(String.class);
+        String feature = data.get(1).get(0);
+        String scenario = data.get(1).get(1);
+        String screenshotNumber = data.get(1).get(2);
+
+        String expectedImagePath = CustomVisualTestingTool.buildExpectedImagePath(feature, scenario, screenshotNumber);
+        String actualImagePath = CustomVisualTestingTool.buildActualImagePath(feature, scenario, screenshotNumber);
+        String comparedImagePath = CustomVisualTestingTool.buildComparedImagePath(feature, scenario, screenshotNumber);
+        String comparedGiffsPath = CustomVisualTestingTool.buildComparedGiffsPath(feature, scenario, screenshotNumber);
+
+        CustomVisualTestingTool.takeScreenshotAndCompareImages(actualImagePath, expectedImagePath, comparedImagePath, comparedGiffsPath);
     }
 }

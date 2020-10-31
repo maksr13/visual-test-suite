@@ -10,8 +10,8 @@
 
     <properties>
         <version.selenide>5.5.0</version.selenide>
-        <version.junit.cucumber>6.8.1</version.junit.cucumber>
-        <version.java.cucumber>6.8.1</version.java.cucumber>
+        <version.junit.cucumber>6.8.2</version.junit.cucumber>
+        <version.java.cucumber>6.8.2</version.java.cucumber>
         <version.maven.exec>1.6.0</version.maven.exec>
         <version.rest.assured>4.1.2</version.rest.assured>
     </properties>
@@ -34,17 +34,39 @@
             <artifactId>cucumber-java</artifactId>
             <version>${version.java.cucumber}</version>
         </dependency>
+
         <dependency>
             <groupId>io.percy</groupId>
             <artifactId>percy-java-selenium</artifactId>
             <version>0.1.4</version>
         </dependency>
+
         <dependency>
             <groupId>com.applitools</groupId>
             <artifactId>eyes-selenium-java3</artifactId>
             <version>3.178.0</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>ru.yandex.qatools.ashot</groupId>
+            <artifactId>ashot</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.3.16</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.objenesis</groupId>
+            <artifactId>objenesis</artifactId>
+            <version>2.1</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
+
     <build>
         <defaultGoal>dependency:copy-dependencies</defaultGoal>
         <plugins>
