@@ -27,6 +27,7 @@ public class EyesTool {
 
         // Set your personal Applitols API Key from your environment variables.
         eyes.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
+        eyes.setForceFullPageScreenshot(true);
 
         // set batch name
         eyes.setBatch(batch);

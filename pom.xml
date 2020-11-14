@@ -8,31 +8,24 @@
     <artifactId>visual-testing-suite</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <properties>
-        <version.selenide>5.5.0</version.selenide>
-        <version.junit.cucumber>6.8.2</version.junit.cucumber>
-        <version.java.cucumber>6.8.2</version.java.cucumber>
-        <version.maven.exec>1.6.0</version.maven.exec>
-        <version.rest.assured>4.1.2</version.rest.assured>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>${version.selenide}</version>
+            <version>5.5.0</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>${version.junit.cucumber}</version>
+            <version>5.7.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>${version.java.cucumber}</version>
+            <version>5.7.0</version>
         </dependency>
 
         <dependency>
