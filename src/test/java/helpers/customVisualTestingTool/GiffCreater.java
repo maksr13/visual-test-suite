@@ -17,8 +17,6 @@ public class GiffCreater {
     private IIOMetadata metadata;
 
     private GiffCreater(ImageOutputStream out, int imageType, int delay, boolean loop) throws IOException {
-
-
         writer = ImageIO.getImageWritersBySuffix("gif").next();
         params = writer.getDefaultWriteParam();
 

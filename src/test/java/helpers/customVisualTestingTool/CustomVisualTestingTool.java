@@ -29,25 +29,12 @@ public class CustomVisualTestingTool {
     private static String comparedImagesFolderForScenarioPath;
     private static String comparedGiffsFolderForScenarioPath;
 
-    String actualImagePath;
-    String expectedImagePath;
-    String comparedImagePath;
-    String comparedGiffPath;
+    private String actualImagePath;
+    private String expectedImagePath;
+    private String comparedImagePath;
+    private String comparedGiffPath;
 
     public CustomVisualTestingTool(String featureName, String scenarioNumber) throws IOException {
-        if (Files.notExists(Paths.get(actualImagesBaseFolderPath))) {
-            Files.createDirectory(Paths.get(actualImagesBaseFolderPath));
-        }
-        if (Files.notExists(Paths.get(expectedImagesBaseFolderPath))) {
-            Files.createDirectory(Paths.get(expectedImagesBaseFolderPath));
-        }
-        if (Files.notExists(Paths.get(comparedImagesBaseFolderPath))) {
-            Files.createDirectory(Paths.get(comparedImagesBaseFolderPath));
-        }
-        if (Files.notExists(Paths.get(comparedGiffsBaseFolderPath))) {
-            Files.createDirectory(Paths.get(comparedGiffsBaseFolderPath));
-        }
-
         actualImagesFolderForScenarioPath = createDirectoryForScenarioIfDoesntExist(featureName, scenarioNumber, actualImagesBaseFolderPath);
         expectedImagesFolderForScenarioPath = createDirectoryForScenarioIfDoesntExist(featureName, scenarioNumber, expectedImagesBaseFolderPath);
         comparedImagesFolderForScenarioPath = createDirectoryForScenarioIfDoesntExist(featureName, scenarioNumber, comparedImagesBaseFolderPath);
@@ -77,6 +64,9 @@ public class CustomVisualTestingTool {
     }
 
     private static String createDirectoryForScenarioIfDoesntExist(String featureName, String scenarioNumber, String baseFolder) throws IOException {
+        if (Files.notExists(Paths.get(baseFolder))) {
+            Files.createDirectory(Paths.get(baseFolder));
+        }
         String directoryForFeaturePath = baseFolder + "/" + featureName;
         if (Files.notExists(Paths.get(directoryForFeaturePath))) {
             Files.createDirectory(Paths.get(directoryForFeaturePath));
@@ -122,7 +112,7 @@ public class CustomVisualTestingTool {
         }
     }
 
-    public Boolean takeScreenshotAndCompareImages(String screenshotTag) throws IOException {
+    public boolean takeScreenshotAndCompareImages(String screenshotTag) throws IOException {
         actualImagePath = buildActualImagePath(screenshotTag);
         expectedImagePath = buildExpectedImagePath(screenshotTag);
         comparedImagePath = buildComparedImagePath(screenshotTag);

@@ -17,7 +17,7 @@ public class Hooks {
     }
 
     @After
-    public void afterFeature() {
+    public static void teardown() {
         getWebDriver().quit();
     }
 }

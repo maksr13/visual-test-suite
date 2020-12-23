@@ -5,18 +5,16 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-
-import utils.Common;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/features/CustomVisualTestingTool.feature"},
+        features = {"src/test/resources/features/CustomVisualTestingToolTest.feature"},
         plugin = {"pretty", "html:target/cucumber-html-report.html"})
 public class RunCucumberTest {
 
